@@ -152,7 +152,7 @@ int bitAnd(int x, int y) {
  */
 int bitXor(int x, int y) {
 
-  return 2;
+  return ~((x&y)&(~x&~y));
 
 }
 
@@ -169,7 +169,8 @@ int bitXor(int x, int y) {
  */
 int evenBits(void) {
 
-  return 2;
+  int i = 0x55;
+  return i+ (i<<8) + (i<<16) + (i<<24);
 
 }
 
@@ -188,7 +189,8 @@ int evenBits(void) {
  */
 int getByte(int x, int n) {
 
-  return 2;
+  int mask = 0xFF;
+  return (x&(mask<<(n<<2)))>>(n<<2);
 
 }
 
@@ -209,7 +211,12 @@ int getByte(int x, int n) {
  */
 int bitMask(int highbit, int lowbit) {
 
-  return 2;
+  int i = 1;
+  int j = 1;
+  i << = highbit;
+  j << = lowbit;
+  int temp_i = ~i;
+  return (temp_i&j)&i;
 
 }
 
@@ -227,7 +234,9 @@ int bitMask(int highbit, int lowbit) {
  */
 int reverseBytes(int x) {
 
-  return 2;
+  int i_0 = 0xFF,i_1 = 0xFF00,i_2 = 0xFF0000,i_3 = 0xFF000000;
+  int r_0 = x&i_0, r_1 = x&i_1,r_2 = x&i_2,r_3 = x&i_3;
+  return (r_3<<24) |( r_2<<16 )|( r_1<<8) |(r_0);
 
 }
 
@@ -246,7 +255,7 @@ int reverseBytes(int x) {
  */
 int leastBitPos(int x) {
 
-  return 2;
+  return (~x+1)&x;
 
 }
 
